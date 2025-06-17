@@ -1,10 +1,10 @@
 :root {
-    /* Cyberpunk neon gaming theme - blue, purple, black */
-    --primary-bg: #0a0a0f;
-    --secondary-bg: #161621;
-    --tertiary-bg: #1f1f2e;
-    --card-bg: #1a1a28;
-    --accent-bg: #252540;
+    /* Cyberpunk neon gaming theme - charcoal black with purple/cyan tinges */
+    --primary-bg: #1a1a1d;
+    --secondary-bg: #1e1e22;
+    --tertiary-bg: #222228;
+    --card-bg: #1c1c21;
+    --accent-bg: #20202a;
     --primary-text: #e6e6ff;
     --secondary-text: #b8b8d4;
     --muted-text: #8a8aa8;
@@ -54,7 +54,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Noto Sans", sans-serif;
-    background: var(--primary-bg);
+    background: radial-gradient(ellipse at center, #1d1d21 0%, #1a1a1e 50%, #171719 100%);
     color: var(--primary-text);
     line-height: 1.6;
     font-weight: 400;
@@ -62,6 +62,7 @@ body {
     transition: var(--transition);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
 }
 
 .dashboard {
@@ -72,13 +73,13 @@ body {
 
 /* Top Bar */
 .top-bar {
-    background: var(--secondary-bg);
+    background: linear-gradient(135deg, #1b1b1e, #1d1d22, #1f1f26);
     border-bottom: 1px solid var(--bright-cyan);
     padding: 12px 16px;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: var(--shadow-light), 0 1px 0 var(--bright-cyan);
+    box-shadow: var(--shadow-light), 0 1px 0 var(--bright-cyan), inset 0 1px 0 rgba(107, 70, 193, 0.1);
 }
 
 .bar-content {
@@ -228,12 +229,12 @@ body {
 
 /* Side Panel */
 .side-panel {
-    background: var(--secondary-bg);
+    background: linear-gradient(180deg, #1b1b1e, #1d1d21, #1f1f25);
     border-right: 1px solid var(--bright-cyan);
     padding: 16px;
     overflow-y: auto;
     height: calc(100vh - 60px);
-    box-shadow: 1px 0 0 var(--bright-cyan);
+    box-shadow: 1px 0 0 var(--bright-cyan), inset -1px 0 0 rgba(0, 245, 255, 0.1);
 }
 
 .panel-section {
@@ -243,10 +244,14 @@ body {
 .section-label {
     font-size: 11px;
     font-weight: 600;
-    color: var(--secondary-text);
+    color: var(--bright-cyan);
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    background: rgba(0, 245, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: var(--radius);
+    text-shadow: 0 0 8px rgba(0, 245, 255, 0.4);
 }
 
 /* Category Buttons */
@@ -331,7 +336,10 @@ body {
     gap: 3px;
     margin-bottom: 8px;
     font-size: 12px;
-    color: var(--secondary-text);
+    color: var(--bright-cyan);
+    background: rgba(0, 245, 255, 0.08);
+    padding: 4px 6px;
+    border-radius: var(--radius);
 }
 
 .rating-num {
@@ -496,8 +504,11 @@ body {
 
 .results-text {
     font-size: 12px;
-    color: var(--secondary-text);
+    color: var(--bright-cyan);
     font-weight: 500;
+    background: rgba(0, 245, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: var(--radius);
 }
 
 .sort-control {
@@ -674,7 +685,7 @@ body {
 
 .game-card[data-category="puzzle"] {
     --game-accent: var(--purple-accent);
-    --game-bg: rgba(165, 165, 255, 0.1);
+    --game-bg: rgba(107, 70, 193, 0.25);
 }
 
 .game-card[data-category="adventure"] {
