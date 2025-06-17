@@ -306,14 +306,74 @@ body {
     color: var(--primary-text);
 }
 
-.cat-btn.active {
-    background: var(--dark-purple);
-    border-color: var(--purple-accent);
-    color: #ffffff;
+.cat-btn[data-category="all"].active {
+    background: rgba(107, 70, 193, 0.3);
+    border-color: #bb44ff;
+    color: #bb44ff;
     font-weight: 600;
     transform: translateY(-1px);
-    box-shadow: var(--shadow-medium), 0 0 20px rgba(107, 70, 193, 0.8), inset 0 0 15px rgba(107, 70, 193, 0.3);
-    text-shadow: 0 0 8px rgba(107, 70, 193, 0.6);
+    box-shadow: var(--shadow-medium), 0 0 20px rgba(187, 68, 255, 0.7);
+    text-shadow: 0 0 8px rgba(187, 68, 255, 0.5);
+}
+
+.cat-btn[data-category="arcade"].active {
+    background: rgba(255, 68, 68, 0.2);
+    border-color: #ff4444;
+    color: #ff4444;
+    font-weight: 600;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium), 0 0 20px rgba(255, 68, 68, 0.6);
+    text-shadow: 0 0 8px rgba(255, 68, 68, 0.4);
+}
+
+.cat-btn[data-category="puzzle"].active {
+    background: rgba(255, 136, 0, 0.2);
+    border-color: #ff8800;
+    color: #ff8800;
+    font-weight: 600;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium), 0 0 20px rgba(255, 136, 0, 0.6);
+    text-shadow: 0 0 8px rgba(255, 136, 0, 0.4);
+}
+
+.cat-btn[data-category="adventure"].active {
+    background: rgba(125, 216, 127, 0.2);
+    border-color: #7dd87f;
+    color: #7dd87f;
+    font-weight: 600;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium), 0 0 20px rgba(125, 216, 127, 0.6);
+    text-shadow: 0 0 8px rgba(125, 216, 127, 0.4);
+}
+
+.cat-btn[data-category="social"].active {
+    background: rgba(0, 136, 255, 0.2);
+    border-color: var(--electric-blue);
+    color: var(--electric-blue);
+    font-weight: 600;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium), 0 0 20px rgba(0, 136, 255, 0.6);
+    text-shadow: 0 0 8px rgba(0, 136, 255, 0.4);
+}
+
+.cat-btn[data-category="action"].active {
+    background: rgba(255, 193, 7, 0.2);
+    border-color: #ffc107;
+    color: #ffc107;
+    font-weight: 600;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium), 0 0 20px rgba(255, 193, 7, 0.6);
+    text-shadow: 0 0 8px rgba(255, 193, 7, 0.4);
+}
+
+.cat-btn[data-category="strategy"].active {
+    background: rgba(255, 20, 147, 0.2);
+    border-color: #ff1493;
+    color: #ff1493;
+    font-weight: 600;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium), 0 0 20px rgba(255, 20, 147, 0.6);
+    text-shadow: 0 0 8px rgba(255, 20, 147, 0.4);
 }
 
 .cat-btn:hover:not(.active) {
@@ -323,9 +383,13 @@ body {
 }
 
 .fav-btn.active {
-    background: var(--bright-cyan);
+    background: rgba(0, 245, 255, 0.2);
     border-color: var(--bright-cyan);
-    color: #000000;
+    color: var(--bright-cyan);
+    font-weight: 600;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium), 0 0 20px rgba(0, 245, 255, 0.6);
+    text-shadow: 0 0 8px rgba(0, 245, 255, 0.4);
 }
 
 .btn-icon {
@@ -570,9 +634,10 @@ body {
 }
 
 .clear-action:hover {
-    background: var(--red-accent);
-    border-color: var(--red-accent);
+    background: #c0392b;
+    border-color: #c0392b;
     color: white;
+    box-shadow: 0 0 15px rgba(192, 57, 43, 0.25);
 }
 
 .random-action {
@@ -822,33 +887,33 @@ body {
 
 /* Game Colors */
 .game-card[data-category="arcade"] {
-    --game-accent: var(--bright-cyan);
-    --game-bg: rgba(0, 245, 255, 0.1);
+    --game-accent: #ff4444;
+    --game-bg: rgba(255, 68, 68, 0.15);
 }
 
 .game-card[data-category="puzzle"] {
-    --game-accent: #bb44ff;
-    --game-bg: rgba(187, 68, 255, 0.15);
+    --game-accent: #ff8800;
+    --game-bg: rgba(255, 136, 0, 0.15);
 }
 
 .game-card[data-category="adventure"] {
-    --game-accent: var(--green-accent);
-    --game-bg: rgba(86, 211, 100, 0.1);
+    --game-accent: #7dd87f;
+    --game-bg: rgba(125, 216, 127, 0.15);
 }
 
 .game-card[data-category="social"] {
     --game-accent: var(--electric-blue);
-    --game-bg: rgba(0, 136, 255, 0.1);
+    --game-bg: rgba(0, 136, 255, 0.15);
 }
 
 .game-card[data-category="action"] {
-    --game-accent: var(--bright-cyan);
-    --game-bg: rgba(0, 245, 255, 0.1);
+    --game-accent: #ffc107;
+    --game-bg: rgba(255, 193, 7, 0.15);
 }
 
 .game-card[data-category="strategy"] {
-    --game-accent: var(--pink-accent);
-    --game-bg: rgba(255, 123, 114, 0.1);
+    --game-accent: #ff1493;
+    --game-bg: rgba(255, 20, 147, 0.15);
 }
 
 /* Support Modal */

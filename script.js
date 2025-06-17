@@ -243,7 +243,7 @@ class CompactDashboard {
                 <div style="grid-column: 1 / -1; text-align: center; padding: 30px; color: var(--muted-text);">
                     <h3 style="margin-bottom: 12px; color: var(--secondary-text);">No games found</h3>
                     <p style="margin-bottom: 16px;">Try adjusting filters</p>
-                    <button onclick="compactDashboard.clearFilters()" style="padding: 8px 16px; background: var(--blue-accent); color: white; border: none; border-radius: var(--radius); cursor: pointer; font-size: 11px;">Clear Filters</button>
+                    <button onclick="compactDashboard.clearFilters()" style="padding: 8px 16px; background: #c0392b; color: white; border: none; border-radius: var(--radius); cursor: pointer; font-size: 11px;">Clear Filters</button>
                 </div>
             `;
             return;
