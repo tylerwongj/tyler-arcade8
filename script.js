@@ -263,20 +263,24 @@ class CompactDashboard {
                         <div class="game-title">${game.icon} ${game.title}</div>
                         <div class="game-category">${game.category}</div>
                     </div>
+                    <div class="header-right">
+                        <div class="game-status ${game.status}">${game.status === 'beta' ? 'Beta' : 'Available'}</div>
+                        <div class="game-actions">
+                            <button class="favorite-btn ${isFavorited ? 'favorited' : ''}" data-game-id="${game.id}">
+                                <span class="blue-star">${isFavorited ? '⭐' : '☆'}</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="game-status ${game.status}">${game.status === 'beta' ? 'Beta' : 'Available'}</div>
                 <div class="game-description">${game.description}</div>
                 <div class="game-footer">
                     <div class="game-rating">
-                        <span>⭐ ${game.rating.toFixed(1)}</span>
+                        <span><span class="blue-star">⭐</span> ${game.rating.toFixed(1)}</span>
                     </div>
                     <div class="game-actions">
                         <a href="${game.path}" class="play-btn" target="_blank">
                             🎮 Play
                         </a>
-                        <button class="favorite-btn ${isFavorited ? 'favorited' : ''}" data-game-id="${game.id}">
-                            ${isFavorited ? '⭐' : '☆'}
-                        </button>
                     </div>
                 </div>
             </div>
