@@ -253,11 +253,31 @@ class CompactDashboard {
         this.setupGameCardListeners();
     }
 
+    getCategoryIcon(category) {
+        const icons = {
+            arcade: '🕹️',
+            puzzle: '🧩', 
+            adventure: '🏔️',
+            social: '👥',
+            action: '🚀',
+            strategy: '♟️'
+        };
+        return icons[category] || '🎮';
+    }
+
     createGameCard(game) {
         const isFavorited = this.favorites.includes(game.id);
         
         return `
             <div class="game-card" data-category="${game.category}">
+                <div class="game-thumbnail" data-category="${game.category}">
+                    ${game.thumbnail ? 
+                        `<img src="${game.thumbnail}" alt="${game.title} thumbnail" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                         <div class="thumbnail-icon default-fallback" style="display:none;">${this.getCategoryIcon(game.category)}</div>` 
+                        : 
+                        `<div class="thumbnail-icon default-thumbnail">${this.getCategoryIcon(game.category)}</div>`
+                    }
+                </div>
                 <div class="game-header">
                     <div>
                         <div class="game-title">${game.icon} ${game.title}</div>

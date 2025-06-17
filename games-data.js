@@ -7,7 +7,8 @@ const gamesData = [
         rating: 8.5,
         description: "Classic Pong with power-ups and multiplayer battles",
         icon: "🏓",
-        path: "../power-pong/"
+        path: "../power-pong/",
+        thumbnail: "../power-pong/thumbnail.png"
     },
     {
         id: 2,

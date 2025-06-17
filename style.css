@@ -718,6 +718,71 @@ body {
     min-height: 200px;
 }
 
+.game-thumbnail {
+    width: 100%;
+    height: 120px;
+    margin-bottom: 12px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--accent-bg);
+}
+
+.game-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.game-card:hover .game-thumbnail img {
+    transform: scale(1.05);
+}
+
+.default-thumbnail, .default-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.game-thumbnail[data-category="arcade"] .default-thumbnail,
+.game-thumbnail[data-category="arcade"] .default-fallback {
+    background: linear-gradient(135deg, #ff4444, #ff6b6b);
+}
+
+.game-thumbnail[data-category="puzzle"] .default-thumbnail,
+.game-thumbnail[data-category="puzzle"] .default-fallback {
+    background: linear-gradient(135deg, #ff8800, #ffaa44);
+}
+
+.game-thumbnail[data-category="adventure"] .default-thumbnail,
+.game-thumbnail[data-category="adventure"] .default-fallback {
+    background: linear-gradient(135deg, #7dd87f, #95e5a3);
+}
+
+.game-thumbnail[data-category="social"] .default-thumbnail,
+.game-thumbnail[data-category="social"] .default-fallback {
+    background: linear-gradient(135deg, #0088ff, #38bdf8);
+}
+
+.game-thumbnail[data-category="action"] .default-thumbnail,
+.game-thumbnail[data-category="action"] .default-fallback {
+    background: linear-gradient(135deg, #ffc107, #fde047);
+}
+
+.game-thumbnail[data-category="strategy"] .default-thumbnail,
+.game-thumbnail[data-category="strategy"] .default-fallback {
+    background: linear-gradient(135deg, #ff1493, #f472b6);
+}
+
+.thumbnail-icon {
+    font-size: 48px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
 .game-card::before {
     content: '';
     position: absolute;
