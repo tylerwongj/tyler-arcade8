@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tyler Arcade 🎮</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Compact Header -->
+        <header class="top-bar">
+            <div class="bar-content">
+                <h1 class="brand">🎮 Tyler Arcade</h1>
+                <div class="search-section">
+                    <div class="search-input-wrapper">
+                        <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                        <div class="search-indicator">🔍</div>
+                    </div>
+                </div>
+                <div class="top-actions">
+                    <div class="settings-control">
+                        <button class="control-btn" id="settingsBtn">⚙️</button>
+                        <div class="control-menu" id="settingsMenu">
+                            <button class="menu-option" id="themeBtn">
+                                <span class="option-icon">🌙</span>
+                                <span>Light Mode</span>
+                            </button>
+                            <button class="menu-option" id="supportBtn">
+                                <span class="option-icon">💖</span>
+                                <span>Support Me</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Compact Navigation -->
+            <aside class="side-panel">
+                <!-- Categories -->
+                <div class="panel-section">
+                    <div class="category-buttons">
+                        <button class="cat-btn active" data-category="all">
+                            <span class="btn-icon">🎯</span>
+                            <span class="btn-text">All</span>
+                            <span class="btn-count" id="allCount">12</span>
+                        </button>
+                        <button class="cat-btn fav-btn" data-category="favorites">
+                            <span class="btn-icon">⭐</span>
+                            <span class="btn-text">Favorites</span>
+                            <span class="btn-count" id="favCount">0</span>
+                        </button>
+                        <button class="cat-btn" data-category="arcade">
+                            <span class="btn-icon">🕹️</span>
+                            <span class="btn-text">Arcade</span>
+                            <span class="btn-count" id="arcadeCount">1</span>
+                        </button>
+                        <button class="cat-btn" data-category="puzzle">
+                            <span class="btn-icon">🧩</span>
+                            <span class="btn-text">Puzzle</span>
+                            <span class="btn-count" id="puzzleCount">4</span>
+                        </button>
+                        <button class="cat-btn" data-category="adventure">
+                            <span class="btn-icon">🗺️</span>
+                            <span class="btn-text">Adventure</span>
+                            <span class="btn-count" id="adventureCount">1</span>
+                        </button>
+                        <button class="cat-btn" data-category="social">
+                            <span class="btn-icon">👥</span>
+                            <span class="btn-text">Social</span>
+                            <span class="btn-count" id="socialCount">1</span>
+                        </button>
+                        <button class="cat-btn" data-category="action">
+                            <span class="btn-icon">⚡</span>
+                            <span class="btn-text">Action</span>
+                            <span class="btn-count" id="actionCount">3</span>
+                        </button>
+                        <button class="cat-btn" data-category="strategy">
+                            <span class="btn-icon">🧠</span>
+                            <span class="btn-text">Strategy</span>
+                            <span class="btn-count" id="strategyCount">2</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rating -->
+                <div class="panel-section">
+                    <h4 class="section-label">Rating</h4>
+                    <div class="rating-widget">
+                        <div class="rating-header">
+                            <span>Min: </span>
+                            <span class="rating-num" id="ratingNum">0</span>
+                            <span>⭐</span>
+                        </div>
+                        <input type="range" id="ratingRange" min="0" max="10" value="0" step="0.5" class="rating-bar">
+                        <div class="bar-ticks">
+                            <span>0</span>
+                            <span>5</span>
+                            <span>10</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="panel-section">
+                    <h4 class="section-label">Status</h4>
+                    <div class="status-controls">
+                        <label class="status-control">
+                            <input type="checkbox" checked data-status="available">
+                            <span class="control-check"></span>
+                            <span class="control-text">Available</span>
+                            <span class="control-num" id="availableCount">9</span>
+                        </label>
+                        <label class="status-control">
+                            <input type="checkbox" checked data-status="beta">
+                            <span class="control-check"></span>
+                            <span class="control-text">Beta</span>
+                            <span class="control-num" id="betaCount">3</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="panel-section">
+                    <button class="panel-action clear-action" id="clearBtn">🗑️ Clear</button>
+                    <button class="panel-action random-action" id="randomBtn">🎲 Random</button>
+                </div>
+            </aside>
+
+            <!-- Main Area -->
+            <main class="main-area">
+                <div class="area-header">
+                    <div class="results-text" id="resultsText">12 games</div>
+                    <div class="header-controls">
+                        <select id="sortSelect" class="sort-control">
+                            <option value="title">Title</option>
+                            <option value="rating">Rating</option>
+                            <option value="category">Category</option>
+                            <option value="status">Status</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="games-grid" id="gamesGrid">
+                    <!-- Games rendered here -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Support Modal -->
+        <div class="modal-backdrop" id="supportModal">
+            <div class="modal-card">
+                <div class="card-header">
+                    <h3 class="card-title">💖 Support Tyler Arcade</h3>
+                    <button class="card-close" id="closeModal">×</button>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Help keep Tyler Arcade free and growing! Your support means everything.</p>
+                    <div class="support-actions">
+                        <a href="#" class="support-action">☕ Coffee</a>
+                        <a href="#" class="support-action">💝 Donate</a>
+                        <a href="#" class="support-action">⭐ GitHub</a>
+                        <a href="#" class="support-action">📤 Share</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="games-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
