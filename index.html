@@ -17,6 +17,7 @@
                         <input type="text" id="searchInput" placeholder="Search..." class="search-input">
                         <div class="search-indicator">🔍</div>
                     </div>
+                    <button class="panel-action random-action" id="randomBtn">🎲 Random</button>
                 </div>
                 <div class="top-actions">
                     <div class="settings-control">
@@ -107,13 +108,13 @@
                 <div class="panel-section">
                     <h4 class="section-label">Status</h4>
                     <div class="status-controls">
-                        <label class="status-control">
+                        <label class="status-control available-control">
                             <input type="checkbox" checked data-status="available">
                             <span class="control-check"></span>
                             <span class="control-text">Available</span>
                             <span class="control-num" id="availableCount">9</span>
                         </label>
-                        <label class="status-control">
+                        <label class="status-control beta-control">
                             <input type="checkbox" checked data-status="beta">
                             <span class="control-check"></span>
                             <span class="control-text">Beta</span>
@@ -125,7 +126,6 @@
                 <!-- Actions -->
                 <div class="panel-section">
                     <button class="panel-action clear-action" id="clearBtn">🗑️ Clear</button>
-                    <button class="panel-action random-action" id="randomBtn">🎲 Random</button>
                 </div>
             </aside>
 
