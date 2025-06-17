@@ -30,12 +30,12 @@
 }
 
 [data-theme="light"] {
-    /* Grey-toned light theme - easier on eyes */
-    --primary-bg: #f5f5f5;
-    --secondary-bg: #eeeeee;
+    /* Grey-toned light theme - cards stand out from background */
+    --primary-bg: #eeeeee;
+    --secondary-bg: #e8e8e8;
     --tertiary-bg: #f9f9f9;
-    --card-bg: #f9f9f9;
-    --accent-bg: #e8e8e8;
+    --card-bg: #ffffff;
+    --accent-bg: #e0e0e0;
     --primary-text: #1a202c;
     --secondary-text: #4a5568;
     --muted-text: #718096;
