@@ -10,6 +10,7 @@ class CompactDashboard {
         };
         this.sortBy = 'title';
         this.showFavoritesOnly = false;
+        this.currentRatingGameId = null;
         
         this.init();
     }
@@ -47,6 +48,11 @@ class CompactDashboard {
         // Support
         document.getElementById('supportBtn').addEventListener('click', () => {
             this.showSupportModal();
+        });
+
+        // About
+        document.getElementById('aboutBtn').addEventListener('click', () => {
+            this.showAboutModal();
         });
 
         // Categories
@@ -102,6 +108,11 @@ class CompactDashboard {
         document.getElementById('clearBtn').addEventListener('click', () => this.clearFilters());
         document.getElementById('randomBtn').addEventListener('click', () => this.randomGame());
 
+        // Mobile hamburger menu
+        document.getElementById('hamburgerBtn').addEventListener('click', () => this.toggleMobileMenu());
+        document.getElementById('menuBackdrop').addEventListener('click', () => this.closeMobileMenu());
+        document.getElementById('backBtn').addEventListener('click', () => this.closeMobileMenu());
+
         // Modal
         document.getElementById('closeModal').addEventListener('click', () => this.hideSupportModal());
         document.getElementById('supportModal').addEventListener('click', (e) => {
@@ -109,6 +120,27 @@ class CompactDashboard {
                 this.hideSupportModal();
             }
         });
+
+        // Rating Modal
+        document.getElementById('closeRatingModal').addEventListener('click', () => this.hideRatingModal());
+        document.getElementById('ratingModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                this.hideRatingModal();
+            }
+        });
+        document.getElementById('submitRating').addEventListener('click', () => this.submitRating());
+        document.getElementById('cancelRating').addEventListener('click', () => this.hideRatingModal());
+
+        // About Modal
+        document.getElementById('closeAboutModal').addEventListener('click', () => this.hideAboutModal());
+        document.getElementById('aboutModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                this.hideAboutModal();
+            }
+        });
+
+        // Star rating functionality
+        this.setupStarRating();
     }
 
     toggleSettings() {
@@ -145,6 +177,169 @@ class CompactDashboard {
 
     hideSupportModal() {
         document.getElementById('supportModal').classList.remove('show');
+    }
+
+    showAboutModal() {
+        document.getElementById('aboutModal').classList.add('show');
+        this.closeSettings();
+    }
+
+    hideAboutModal() {
+        document.getElementById('aboutModal').classList.remove('show');
+    }
+
+    toggleMobileMenu() {
+        const sidePanel = document.getElementById('sidePanel');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const backdrop = document.getElementById('menuBackdrop');
+
+        const isOpen = sidePanel.classList.contains('open');
+
+        if (isOpen) {
+            this.closeMobileMenu();
+        } else {
+            this.openMobileMenu();
+        }
+    }
+
+    openMobileMenu() {
+        const sidePanel = document.getElementById('sidePanel');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const backdrop = document.getElementById('menuBackdrop');
+
+        sidePanel.classList.add('open');
+        hamburgerBtn.classList.add('active');
+        backdrop.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    closeMobileMenu() {
+        const sidePanel = document.getElementById('sidePanel');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const backdrop = document.getElementById('menuBackdrop');
+
+        sidePanel.classList.remove('open');
+        hamburgerBtn.classList.remove('active');
+        backdrop.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    showRatingModal(gameId) {
+        this.currentRatingGameId = gameId;
+        const game = this.games.find(g => g.id === gameId);
+        
+        if (game) {
+            document.getElementById('ratingGameTitle').textContent = game.title;
+            this.resetRatingStars();
+            document.getElementById('ratingModal').classList.add('show');
+        }
+    }
+
+    hideRatingModal() {
+        document.getElementById('ratingModal').classList.remove('show');
+        this.resetRatingStars();
+        this.currentRatingGameId = null;
+    }
+
+    setupStarRating() {
+        document.querySelectorAll('.star-rating').forEach(rating => {
+            const stars = rating.querySelectorAll('.star');
+            
+            stars.forEach((star, index) => {
+                star.addEventListener('mouseenter', () => {
+                    this.highlightStars(rating, index + 1);
+                });
+                
+                star.addEventListener('click', () => {
+                    this.selectStars(rating, index + 1);
+                });
+            });
+            
+            rating.addEventListener('mouseleave', () => {
+                this.restoreSelectedStars(rating);
+            });
+        });
+    }
+
+    highlightStars(rating, count) {
+        const stars = rating.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            if (index < count) {
+                star.classList.add('hover');
+                star.textContent = '⭐';
+            } else {
+                star.classList.remove('hover');
+                star.textContent = '☆';
+            }
+        });
+    }
+
+    selectStars(rating, count) {
+        const category = rating.dataset.category;
+        rating.dataset.selectedRating = count;
+        
+        const stars = rating.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            if (index < count) {
+                star.classList.add('selected');
+                star.classList.remove('hover');
+                star.textContent = '⭐';
+            } else {
+                star.classList.remove('selected', 'hover');
+                star.textContent = '☆';
+            }
+        });
+    }
+
+    restoreSelectedStars(rating) {
+        const selectedRating = parseInt(rating.dataset.selectedRating) || 0;
+        const stars = rating.querySelectorAll('.star');
+        
+        stars.forEach((star, index) => {
+            star.classList.remove('hover');
+            if (index < selectedRating) {
+                star.classList.add('selected');
+                star.textContent = '⭐';
+            } else {
+                star.classList.remove('selected');
+                star.textContent = '☆';
+            }
+        });
+    }
+
+    resetRatingStars() {
+        document.querySelectorAll('.star-rating').forEach(rating => {
+            rating.dataset.selectedRating = '0';
+            rating.querySelectorAll('.star').forEach(star => {
+                star.classList.remove('selected', 'hover');
+                star.textContent = '☆';
+            });
+        });
+    }
+
+    submitRating() {
+        const funRating = document.querySelector('[data-category="fun"]').dataset.selectedRating || 0;
+        const functionalityRating = document.querySelector('[data-category="functionality"]').dataset.selectedRating || 0;
+        
+        if (funRating === '0' || functionalityRating === '0') {
+            alert('Please rate both categories before submitting.');
+            return;
+        }
+
+        // Store rating in localStorage
+        const ratings = JSON.parse(localStorage.getItem('gameRatings')) || {};
+        ratings[this.currentRatingGameId] = {
+            fun: parseInt(funRating),
+            functionality: parseInt(functionalityRating),
+            timestamp: new Date().toISOString()
+        };
+        
+        localStorage.setItem('gameRatings', JSON.stringify(ratings));
+        
+        // Show confirmation
+        alert(`Rating submitted! Fun: ${funRating}⭐ | Functionality: ${functionalityRating}⭐`);
+        
+        this.hideRatingModal();
     }
 
     updateCategoryStates() {
@@ -243,7 +438,7 @@ class CompactDashboard {
                 <div style="grid-column: 1 / -1; text-align: center; padding: 30px; color: var(--muted-text);">
                     <h3 style="margin-bottom: 12px; color: var(--secondary-text);">No games found</h3>
                     <p style="margin-bottom: 16px;">Try adjusting filters</p>
-                    <button onclick="compactDashboard.clearFilters()" style="padding: 8px 16px; background: #c0392b; color: white; border: none; border-radius: var(--radius); cursor: pointer; font-size: 11px;">Clear Filters</button>
+                    <button onclick="compactDashboard.clearFilters()" style="padding: 8px 16px; background: #c0392b; color: white; border: none; border-radius: var(--radius); cursor: pointer; font-size: 11px; font-family: 'Lilita One', sans-serif;">Clear Filters</button>
                 </div>
             `;
             return;
@@ -298,6 +493,9 @@ class CompactDashboard {
                         <span><span class="blue-star">⭐</span> ${game.rating.toFixed(1)}</span>
                     </div>
                     <div class="game-actions">
+                        <button class="rate-btn" data-game-id="${game.id}">
+                            ⭐ Rate
+                        </button>
                         <a href="${game.path}" class="play-btn" target="_blank">
                             🎮 Play
                         </a>
@@ -313,6 +511,14 @@ class CompactDashboard {
                 e.preventDefault();
                 const gameId = parseInt(btn.dataset.gameId);
                 this.toggleFavorite(gameId);
+            });
+        });
+
+        document.querySelectorAll('.rate-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const gameId = parseInt(btn.dataset.gameId);
+                this.showRatingModal(gameId);
             });
         });
     }
@@ -334,7 +540,7 @@ class CompactDashboard {
     updateCategoryCounts() {
         const counts = {
             all: this.games.length,
-            favorites: this.favorites.length,
+            fav: this.favorites.length,
             arcade: this.games.filter(g => g.category === 'arcade').length,
             puzzle: this.games.filter(g => g.category === 'puzzle').length,
             adventure: this.games.filter(g => g.category === 'adventure').length,

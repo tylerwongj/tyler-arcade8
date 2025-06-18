@@ -8,24 +8,28 @@
 </head>
 <body>
     <div class="dashboard">
-        <!-- Compact Header -->
+        <!-- Mobile-Responsive Header -->
         <header class="top-bar">
             <div class="bar-content">
-                <h1 class="brand">🎮 Tyler Arcade</h1>
-                <div class="search-section">
-                    <div class="search-input-wrapper">
-                        <input type="text" id="searchInput" placeholder="Search..." class="search-input">
-                        <div class="search-indicator">🔍</div>
+                <div class="header-top">
+                    <div class="brand-section">
+                        <button class="hamburger-btn" id="hamburgerBtn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <h1 class="brand" onclick="location.reload();" style="cursor: pointer;">🎮 Tyler Arcade</h1>
                     </div>
-                    <button class="panel-action random-action" id="randomBtn">🎲 Random</button>
-                </div>
-                <div class="top-actions">
                     <div class="settings-control">
                         <button class="control-btn" id="settingsBtn">⚙️</button>
                         <div class="control-menu" id="settingsMenu">
                             <button class="menu-option" id="themeBtn">
                                 <span class="option-icon">🌙</span>
                                 <span>Light Mode</span>
+                            </button>
+                            <button class="menu-option" id="aboutBtn">
+                                <span class="option-icon">ℹ️</span>
+                                <span>About</span>
                             </button>
                             <button class="menu-option" id="supportBtn">
                                 <span class="option-icon">💖</span>
@@ -34,12 +38,32 @@
                         </div>
                     </div>
                 </div>
+                <div class="header-bottom">
+                    <div class="search-section">
+                        <div class="search-input-wrapper">
+                            <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                            <div class="search-indicator">🔍</div>
+                        </div>
+                        <button class="panel-action random-action" id="randomBtn">🎲 Random</button>
+                    </div>
+                </div>
             </div>
         </header>
 
+        <!-- Mobile menu backdrop -->
+        <div class="menu-backdrop" id="menuBackdrop"></div>
+
         <div class="dashboard-grid">
-            <!-- Compact Navigation -->
-            <aside class="side-panel">
+            <!-- Mobile Slide-out Navigation -->
+            <aside class="side-panel" id="sidePanel">
+                <!-- Mobile Back Button -->
+                <div class="mobile-panel-header">
+                    <button class="back-btn" id="backBtn">
+                        <span>←</span>
+                        <span>Back</span>
+                    </button>
+                </div>
+                
                 <!-- Categories -->
                 <div class="panel-section">
                     <div class="category-buttons">
@@ -163,6 +187,104 @@
                         <a href="#" class="support-action">💝 Donate</a>
                         <a href="#" class="support-action">⭐ GitHub</a>
                         <a href="#" class="support-action">📤 Share</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rating Modal -->
+        <div class="modal-backdrop" id="ratingModal">
+            <div class="modal-card rating-modal">
+                <div class="card-header">
+                    <h3 class="card-title">⭐ Rate Game</h3>
+                    <button class="card-close" id="closeRatingModal">×</button>
+                </div>
+                <div class="card-body">
+                    <div class="game-info">
+                        <h4 id="ratingGameTitle">Game Title</h4>
+                        <p class="rating-description">Help others discover great games by rating this one!</p>
+                    </div>
+                    
+                    <div class="rating-categories">
+                        <div class="rating-category">
+                            <label class="category-label">Fun</label>
+                            <div class="star-rating" data-category="fun">
+                                <span class="star" data-value="1">☆</span>
+                                <span class="star" data-value="2">☆</span>
+                                <span class="star" data-value="3">☆</span>
+                                <span class="star" data-value="4">☆</span>
+                                <span class="star" data-value="5">☆</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rating-category">
+                            <label class="category-label">Functionality</label>
+                            <div class="star-rating" data-category="functionality">
+                                <span class="star" data-value="1">☆</span>
+                                <span class="star" data-value="2">☆</span>
+                                <span class="star" data-value="3">☆</span>
+                                <span class="star" data-value="4">☆</span>
+                                <span class="star" data-value="5">☆</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rating-actions">
+                        <button class="rate-submit-btn" id="submitRating">Submit Rating</button>
+                        <button class="rate-cancel-btn" id="cancelRating">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Modal -->
+        <div class="modal-backdrop" id="aboutModal">
+            <div class="modal-card about-modal">
+                <div class="card-header">
+                    <h3 class="card-title">ℹ️ About Tyler Arcade</h3>
+                    <button class="card-close" id="closeAboutModal">×</button>
+                </div>
+                <div class="card-body">
+                    <div class="about-content">
+                        <div class="mission-section">
+                            <h4>🎯 Our Mission</h4>
+                            <p>Tyler Arcade is dedicated to creating multiplayer games for everyone, with one core principle: <strong>rapid iteration</strong>.</p>
+                            
+                            <p>Games are developed <strong>AS FAST AS POSSIBLE</strong> and released for immediate playtesting. Your feedback tells us how much interest there is in each game concept, helping prioritize which games deserve full development.</p>
+                        </div>
+
+                        <div class="process-section">
+                            <h4>⚡ The Process</h4>
+                            <ol>
+                                <li><strong>Rapid Prototyping</strong> - Games built quickly to test core mechanics</li>
+                                <li><strong>Community Testing</strong> - You play and rate games on Fun & Functionality</li>
+                                <li><strong>Data-Driven Development</strong> - Popular games get expanded into full experiences</li>
+                                <li><strong>Multiplayer Focus</strong> - Every game designed for social play</li>
+                            </ol>
+                        </div>
+
+                        <div class="support-section">
+                            <h4>💝 Support & Sustainability</h4>
+                            <p>Tyler Arcade is currently <strong>completely free</strong> for all players. However, as a solo developer, I need community support to:</p>
+                            
+                            <ul>
+                                <li>Maintain servers for multiplayer games</li>
+                                <li>Dedicate more time to game development</li>
+                                <li>Expand the game library faster</li>
+                                <li>Keep everything free for the community</li>
+                            </ul>
+
+                            <p>Consider supporting via <strong>Patreon</strong> for ongoing development, or through one-time contributions. Every dollar helps make better games for everyone!</p>
+                        </div>
+
+                        <div class="developer-section">
+                            <h4>👨‍💻 Solo Developer</h4>
+                            <p>Built with passion by Tyler, one game at a time. Your playtesting and feedback directly shapes what gets developed next!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-actions">
+                        <button class="about-support-btn" onclick="document.getElementById('supportBtn').click(); document.getElementById('aboutModal').classList.remove('show');">💖 Support Development</button>
                     </div>
                 </div>
             </div>
