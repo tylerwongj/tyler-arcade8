@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0f172a;
+            color: #f1f5f9;
+        }
+        .favicon-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            background: white;
+            margin: 10px;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        input, button {
+            margin: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #6366f1;
+            background: #1e293b;
+            color: #f1f5f9;
+        }
+        button {
+            cursor: pointer;
+            background: #6366f1;
+        }
+        button:hover {
+            background: #4f46e5;
+        }
+        .size-label {
+            display: inline-block;
+            margin: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tyler Arcade Favicon Generator</h1>
+    <p>Create custom favicons for your brand. Change the text and colors below:</p>
+    
+    <div class="controls">
+        <label>Text: <input type="text" id="text" value="TA" maxlength="3"></label>
+        <label>Background: <input type="color" id="bgColor" value="#6366f1"></label>
+        <label>Text Color: <input type="color" id="textColor" value="#ffffff"></label>
+        <button onclick="generateFavicons()">Generate Favicons</button>
+        <button onclick="downloadAll()">Download All</button>
+    </div>
+    
+    <div class="favicon-container">
+        <div class="size-label">16x16 (Browser Tab)</div>
+        <canvas id="favicon16" width="16" height="16"></canvas>
+        <button onclick="downloadCanvas('favicon16', '16x16')">Download</button>
+        
+        <div class="size-label">32x32 (Standard)</div>
+        <canvas id="favicon32" width="32" height="32"></canvas>
+        <button onclick="downloadCanvas('favicon32', '32x32')">Download</button>
+        
+        <div class="size-label">48x48 (Large)</div>
+        <canvas id="favicon48" width="48" height="48"></canvas>
+        <button onclick="downloadCanvas('favicon48', '48x48')">Download</button>
+        
+        <div class="size-label">64x64 (Retina)</div>
+        <canvas id="favicon64" width="64" height="64"></canvas>
+        <button onclick="downloadCanvas('favicon64', '64x64')">Download</button>
+    </div>
+    
+    <div class="controls">
+        <h3>How to use:</h3>
+        <ol>
+            <li>Adjust the text and colors above</li>
+            <li>Click "Generate Favicons" to create all sizes</li>
+            <li>Download individual sizes or click "Download All"</li>
+            <li>Rename the 32x32 version to "favicon.ico" for your website</li>
+        </ol>
+    </div>
+
+    <script>
+        function generateFavicon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const text = document.getElementById('text').value || 'TA';
+            const bgColor = document.getElementById('bgColor').value;
+            const textColor = document.getElementById('textColor').value;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Draw background
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Draw text
+            ctx.fillStyle = textColor;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Font size based on canvas size
+            const fontSize = Math.floor(size * 0.6);
+            ctx.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+            
+            ctx.fillText(text, size/2, size/2);
+        }
+        
+        function generateFavicons() {
+            generateFavicon('favicon16', 16);
+            generateFavicon('favicon32', 32);
+            generateFavicon('favicon48', 48);
+            generateFavicon('favicon64', 64);
+        }
+        
+        function downloadCanvas(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = `favicon-${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        function downloadAll() {
+            downloadCanvas('favicon16', '16x16');
+            setTimeout(() => downloadCanvas('favicon32', '32x32'), 100);
+            setTimeout(() => downloadCanvas('favicon48', '48x48'), 200);
+            setTimeout(() => downloadCanvas('favicon64', '64x64'), 300);
+        }
+        
+        // Generate initial favicons
+        generateFavicons();
+        
+        // Auto-regenerate when inputs change
+        document.getElementById('text').addEventListener('input', generateFavicons);
+        document.getElementById('bgColor').addEventListener('change', generateFavicons);
+        document.getElementById('textColor').addEventListener('change', generateFavicons);
+    </script>
+</body>
+</html>

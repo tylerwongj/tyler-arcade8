@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const fetch = require('node-fetch');
 const path = require('path');
+const BRAND = require('./brand-config.js');
 
 // Check if running locally
 const isLocal = process.argv.includes('--local');
@@ -33,6 +34,12 @@ const GAME_FILES = [
   'thumbnail.png'
 ];
 
+// Branding files to copy to each game
+const BRANDING_FILES = [
+  'brand-config.js',
+  'branding.js'
+];
+
 async function downloadFile(url, filepath) {
   try {
     console.log(`Downloading: ${url}`);
@@ -51,6 +58,21 @@ async function downloadFile(url, filepath) {
   } catch (error) {
     console.log(`  ❌  Error downloading ${url}:`, error.message);
     return false;
+  }
+}
+
+async function copyBrandingFiles(gameDir) {
+  console.log(`  📋 Adding branding files...`);
+  
+  for (const filename of BRANDING_FILES) {
+    try {
+      const sourcePath = path.join(filename);
+      const targetPath = path.join(gameDir, filename);
+      await fs.copy(sourcePath, targetPath);
+      console.log(`    ✅  Added: ${filename}`);
+    } catch (error) {
+      console.log(`    ⚠️  Could not copy ${filename}:`, error.message);
+    }
   }
 }
 
@@ -74,6 +96,10 @@ async function copyLocalGame(gameName) {
         return !excluded.some(exclude => src.includes(exclude));
       }
     });
+    
+    // Copy branding files to local game
+    await copyBrandingFiles(gameDir);
+    
     console.log(`  ✅  Copied local game: ${gameName}`);
     return true;
   } catch (error) {
@@ -94,6 +120,11 @@ async function downloadGame(gameName, repoUrl) {
     
     const success = await downloadFile(fileUrl, filepath);
     if (success) hasFiles = true;
+  }
+  
+  // Copy branding files to each game
+  if (hasFiles) {
+    await copyBrandingFiles(gameDir);
   }
   
   if (!hasFiles) {

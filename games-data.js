@@ -1,3 +1,10 @@
+// Load brand configuration
+const BRAND_CONFIG = {
+    name: "Tyler Arcade",
+    creator: "Tyler",
+    shortName: "TA"
+};
+
 const gamesData = [
     {
         id: 1,
@@ -8,7 +15,9 @@ const gamesData = [
         description: "Classic Pong with power-ups and multiplayer battles",
         icon: "🏓",
         path: "../power-pong/",
-        thumbnail: "../power-pong/thumbnail.png"
+        thumbnail: "../power-pong/thumbnail.png",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 2,
@@ -18,7 +27,9 @@ const gamesData = [
         rating: 9.2,
         description: "Fast-paced word guessing with multiplayer competition",
         icon: "📝",
-        path: "../wordle-blitz/"
+        path: "../wordle-blitz/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 3,
@@ -28,7 +39,9 @@ const gamesData = [
         rating: 7.8,
         description: "Explore vast 3D environments with friends",
         icon: "🌍",
-        path: "../3d-world/"
+        path: "../3d-world/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 4,
@@ -38,7 +51,9 @@ const gamesData = [
         rating: 8.9,
         description: "Draw and guess with multiplayer drawing game",
         icon: "🎨",
-        path: "../skribbl-2/"
+        path: "../skribbl-2/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 5,
@@ -48,7 +63,9 @@ const gamesData = [
         rating: 7.5,
         description: "Musical memory and rhythm challenge game",
         icon: "🎹",
-        path: "../piano-player/"
+        path: "../piano-player/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 6,
@@ -58,7 +75,9 @@ const gamesData = [
         rating: 6.8,
         description: "Physics-based 3D action simulation",
         icon: "🎮",
-        path: "../3d-simulator/"
+        path: "../3d-simulator/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 7,
@@ -68,7 +87,9 @@ const gamesData = [
         rating: 8.1,
         description: "Strategic tic-tac-toe with advanced gameplay",
         icon: "⭕",
-        path: "../tic-tac-toe-pro/"
+        path: "../tic-tac-toe-pro/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 8,
@@ -78,7 +99,9 @@ const gamesData = [
         rating: 7.9,
         description: "Test your coding knowledge with interactive quizzes",
         icon: "💻",
-        path: "../unity-code-quizzer/"
+        path: "../unity-code-quizzer/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 9,
@@ -88,7 +111,9 @@ const gamesData = [
         rating: 8.7,
         description: "High-speed racing with multiplayer competitions",
         icon: "🏎️",
-        path: "../speed-racer/"
+        path: "../speed-racer/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 10,
@@ -98,7 +123,9 @@ const gamesData = [
         rating: 7.3,
         description: "Classic memory matching with themed card sets",
         icon: "🧠",
-        path: "../memory-match/"
+        path: "../memory-match/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 11,
@@ -108,7 +135,9 @@ const gamesData = [
         rating: 8.4,
         description: "Defend Earth from alien invasions in space",
         icon: "🚀",
-        path: "../space-defender/"
+        path: "../space-defender/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     },
     {
         id: 12,
@@ -118,6 +147,8 @@ const gamesData = [
         rating: 9.1,
         description: "Classic chess with AI opponents and multiplayer",
         icon: "♟️",
-        path: "../chess-master/"
+        path: "../chess-master/",
+        creator: BRAND_CONFIG.creator,
+        platform: BRAND_CONFIG.name
     }
 ];
