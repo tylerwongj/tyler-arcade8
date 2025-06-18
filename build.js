@@ -6,19 +6,20 @@ const path = require('path');
 const isLocal = process.argv.includes('--local');
 
 // Configuration - Update these GitHub URLs to match your actual repos
+// Replace 'YOUR-USERNAME' with your actual GitHub username
 const GITHUB_REPOS = {
-  'power-pong': 'https://raw.githubusercontent.com/tyler/power-pong/main',
-  'wordle-blitz': 'https://raw.githubusercontent.com/tyler/wordle-blitz/main', 
-  '3d-world': 'https://raw.githubusercontent.com/tyler/3dworld/main',
-  'skribbl-2': 'https://raw.githubusercontent.com/tyler/skribbl2/main',
-  'piano-player': 'https://raw.githubusercontent.com/tyler/piano-player/main',
-  '3d-simulator': 'https://raw.githubusercontent.com/tyler/3dsimulator/main',
-  'tic-tac-toe-pro': 'https://raw.githubusercontent.com/tyler/tic-tac-toe-pro/main',
-  'unity-code-quizzer': 'https://raw.githubusercontent.com/tyler/unity-code-quizzer/main',
-  'speed-racer': 'https://raw.githubusercontent.com/tyler/speed-racer/main',
-  'memory-match': 'https://raw.githubusercontent.com/tyler/memory-match/main',
-  'space-defender': 'https://raw.githubusercontent.com/tyler/space-defender/main',
-  'chess-master': 'https://raw.githubusercontent.com/tyler/chess-master/main'
+  'power-pong': 'https://raw.githubusercontent.com/YOUR-USERNAME/power-pong/main',
+  'wordle-blitz': 'https://raw.githubusercontent.com/YOUR-USERNAME/wordle-blitz/main', 
+  'skribbl-2': 'https://raw.githubusercontent.com/YOUR-USERNAME/skribbl2/main',
+  'piano-player': 'https://raw.githubusercontent.com/YOUR-USERNAME/piano-player/main',
+  '3d-simulator': 'https://raw.githubusercontent.com/YOUR-USERNAME/3dsimulator/main',
+  'tic-tac-toe-pro': 'https://raw.githubusercontent.com/YOUR-USERNAME/tic-tac-toe-pro/main',
+  'unity-code-quizzer': 'https://raw.githubusercontent.com/YOUR-USERNAME/unity-code-quizzer/main',
+  'speed-racer': 'https://raw.githubusercontent.com/YOUR-USERNAME/speed-racer/main',
+  'memory-match': 'https://raw.githubusercontent.com/YOUR-USERNAME/memory-match/main',
+  'space-defender': 'https://raw.githubusercontent.com/YOUR-USERNAME/space-defender/main',
+  'chess-master': 'https://raw.githubusercontent.com/YOUR-USERNAME/chess-master/main',
+  '3d-world': 'https://raw.githubusercontent.com/YOUR-USERNAME/3dworld/main/modern-3d-world'
 };
 
 // Files to download for each game
