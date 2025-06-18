@@ -5,21 +5,20 @@ const path = require('path');
 // Check if running locally
 const isLocal = process.argv.includes('--local');
 
-// Configuration - Update these GitHub URLs to match your actual repos
-// Replace 'YOUR-USERNAME' with your actual GitHub username
+// Configuration - GitHub URLs for your game repositories
 const GITHUB_REPOS = {
-  'power-pong': 'https://raw.githubusercontent.com/YOUR-USERNAME/power-pong/main',
-  'wordle-blitz': 'https://raw.githubusercontent.com/YOUR-USERNAME/wordle-blitz/main', 
-  'skribbl-2': 'https://raw.githubusercontent.com/YOUR-USERNAME/skribbl2/main',
-  'piano-player': 'https://raw.githubusercontent.com/YOUR-USERNAME/piano-player/main',
-  '3d-simulator': 'https://raw.githubusercontent.com/YOUR-USERNAME/3dsimulator/main',
-  'tic-tac-toe-pro': 'https://raw.githubusercontent.com/YOUR-USERNAME/tic-tac-toe-pro/main',
-  'unity-code-quizzer': 'https://raw.githubusercontent.com/YOUR-USERNAME/unity-code-quizzer/main',
-  'speed-racer': 'https://raw.githubusercontent.com/YOUR-USERNAME/speed-racer/main',
-  'memory-match': 'https://raw.githubusercontent.com/YOUR-USERNAME/memory-match/main',
-  'space-defender': 'https://raw.githubusercontent.com/YOUR-USERNAME/space-defender/main',
-  'chess-master': 'https://raw.githubusercontent.com/YOUR-USERNAME/chess-master/main',
-  '3d-world': 'https://raw.githubusercontent.com/YOUR-USERNAME/3dworld/main/modern-3d-world'
+  'power-pong': 'https://raw.githubusercontent.com/tylerwongj/power-pong/main',
+  'wordle-blitz': 'https://raw.githubusercontent.com/tylerwongj/wordle-blitz/main', 
+  'skribbl-2': 'https://raw.githubusercontent.com/tylerwongj/skribbl2/main',
+  'piano-player': 'https://raw.githubusercontent.com/tylerwongj/piano-player/main',
+  '3d-simulator': 'https://raw.githubusercontent.com/tylerwongj/3dsimulator/main',
+  'tic-tac-toe-pro': 'https://raw.githubusercontent.com/tylerwongj/tic-tac-toe-pro/main',
+  'unity-code-quizzer': 'https://raw.githubusercontent.com/tylerwongj/unity-code-quizzer/main',
+  'speed-racer': 'https://raw.githubusercontent.com/tylerwongj/speed-racer/main',
+  'memory-match': 'https://raw.githubusercontent.com/tylerwongj/memory-match/main',
+  'space-defender': 'https://raw.githubusercontent.com/tylerwongj/space-defender/main',
+  'chess-master': 'https://raw.githubusercontent.com/tylerwongj/chess-master/main',
+  '3d-world': 'https://raw.githubusercontent.com/tylerwongj/3dworld/main/modern-3d-world'
 };
 
 // Files to download for each game
